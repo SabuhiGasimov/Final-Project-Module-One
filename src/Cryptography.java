@@ -5,8 +5,13 @@ public class Cryptography {
 
     private char[] characters;
     private int key;
-    private StringBuilder encryptedText;
     private Map<Character, Integer> map;
+
+    public Map<Character, Integer> getMap() {
+        return map;
+    }
+//private Map<Character, Character> map;
+
 
 
     public char[] getCharacters() {
@@ -19,23 +24,23 @@ public class Cryptography {
     }
 
 
-    public Cryptography(){
-
-    }
 
     public Cryptography(char[] characters, int key) {
         this.characters = characters;
         this.key = key;
+        map = new HashMap<>();
+        fillMap(characters);
     }
 
-
-    public String encrypt(String plainText) {
-        encryptedText = new StringBuilder();
-        map = new HashMap<>();
+    private void fillMap(char[] characters){
         for (int i = 0; i < characters.length; i++) {
             map.put(characters[i], i);
+            //map.put(characters[i], characters[i + key % characters.length]);
         }
+    }
 
+    public String encrypt(String plainText) {
+        StringBuilder encryptedText = new StringBuilder();
         for (int i = 0; i < plainText.length(); i++) {
             if (key < 0 || key > characters.length) {
                 String info = "Invalid key enter a digit between 1 and " + characters.length;
