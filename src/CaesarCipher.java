@@ -1,31 +1,15 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cryptography {
+public class CaesarCipher {
 
     private char[] characters;
     private int key;
     private Map<Character, Integer> map;
 
-    public Map<Character, Integer> getMap() {
-        return map;
-    }
-//private Map<Character, Character> map;
 
 
-
-    public char[] getCharacters() {
-        return characters;
-    }
-
-
-    public int getKey() {
-        return key;
-    }
-
-
-
-    public Cryptography(char[] characters, int key) {
+    public CaesarCipher(char[] characters, int key) {
         this.characters = characters;
         this.key = key;
         map = new HashMap<>();
@@ -53,5 +37,24 @@ public class Cryptography {
         }
 
         return String.valueOf(encryptedText);
+    }
+
+
+
+    public String decrypt(String cipherText) {
+        StringBuilder decryptedText = new StringBuilder();
+        for (int i = 0; i < cipherText.length(); i++) {
+            if (key < 0 || key > characters.length) {
+                String info = "Invalid key enter a digit between 1 and " + characters.length;
+                return info;
+            }
+            char letter = cipherText.charAt(i);
+            int originalPosition = (map.get(letter) - key) % characters.length;
+            if (originalPosition < 0) {
+                originalPosition += characters.length;
+            }
+            decryptedText.append(characters[originalPosition]);
+        }
+        return String.valueOf(decryptedText);
     }
 }

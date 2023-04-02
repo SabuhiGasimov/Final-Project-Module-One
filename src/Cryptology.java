@@ -11,20 +11,18 @@ public class Cryptology {
         FileReader fileReader = new FileReader(new File("assets/plaintext.txt"));
         String plainText = fileReader.toReadFromFile();
         int key = 3;
-        Cryptography cryptography = new Cryptography(characters, key);
-        String cipherText = cryptography.encrypt(plainText);
-
-        Cryptanalysis cryptanalysis = new Cryptanalysis(characters, key);
-        String decryptedText = cryptanalysis.decrypt(cipherText);
-
-        FileWriting fileWriting = new FileWriting("assets/ciphertext.txt",cipherText);
-        fileWriting.writeToFile();
+        CaesarCipher caesarCipher = new CaesarCipher(characters, key);
+        String cipherText = caesarCipher.encrypt(plainText);
+        String decryptedText = caesarCipher.decrypt(cipherText);
 
 
 
+        FileWriting fileWriting = new FileWriting("assets/ciphertext.txt");
+        fileWriting.writeToFile(cipherText);
 
         System.out.println(cipherText);
         System.out.println(decryptedText);
+
 
 
     }
