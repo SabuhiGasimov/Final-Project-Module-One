@@ -1,2 +1,8 @@
 I am learning Java!
-Java is a general-purpose, object-oriented programming language.
+Java is a general-purpose object-oriented language.
+
+
+
+
+
+

@@ -15,7 +15,8 @@ public class FileReader {
             while (scanner.hasNext()) {
                 String stringLine = scanner.nextLine();
                 textFromFile.append(stringLine);
-                textFromFile.append("\n");
+                textFromFile.append('\n');
+
             }
 
         } catch (Exception exception) {
